@@ -1,0 +1,3 @@
+The Factory Pattern provides an interface for creating objects,
+but allows subclasses or factory methods to decide which concrete class to instantiate, 
+thereby promoting loose coupling and adherence to the Open/Closed Principle.

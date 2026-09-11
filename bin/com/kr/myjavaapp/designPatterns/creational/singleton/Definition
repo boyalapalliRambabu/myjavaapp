@@ -1,0 +1,4 @@
+SINGLETON PATTERN
+🔹 Definition (Master Level)
+ 
+Ensure a class has only one instance and provide a global access point to it.
