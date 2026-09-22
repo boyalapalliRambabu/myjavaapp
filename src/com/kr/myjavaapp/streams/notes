@@ -1,0 +1,741 @@
+You can do all 50 in one intensive day if you're already comfortable with Streams, but expect roughly 6–10 hours of focused coding, and retention will be much lower than spreading them over 3 days.
+
+50 Java Streams Interview Problems
+
+I'll order them Easy → Medium → Senior/MAANG-style.
+
+Part 1 — Fundamentals: Q1–Q10
+Q1
+
+Given:
+
+List<Integer> numbers = List.of(10, 15, 20, 25, 30);
+
+Find all even numbers.
+
+Q2
+
+Find all numbers greater than 20.
+
+Q3
+
+Convert:
+
+List<String>
+
+to uppercase using Streams.
+
+Q4
+
+Find the number of elements in a list without using size().
+
+Q5
+
+Find the maximum number.
+
+Q6
+
+Find the minimum number.
+
+Q7
+
+Calculate the sum of all numbers.
+
+Q8
+
+Calculate the average of numbers.
+
+Q9
+
+Remove duplicate numbers.
+
+Q10
+
+Sort numbers in ascending and descending order.
+
+These questions should become almost automatic.
+
+Part 2 — map, filter, flatMap: Q11–Q18
+Q11
+
+Given:
+
+List<String> names =
+    List.of("Ravi", "Ram", "Anil", "Ramesh");
+
+Find names starting with "R".
+
+Q12
+
+Find names whose length is greater than 5.
+
+Q13
+
+Convert a List<Employee> into a List<String> containing only employee names.
+
+Q14
+
+Given:
+
+List<List<Integer>> numbers =
+    List.of(
+        List.of(1, 2, 3),
+        List.of(4, 5),
+        List.of(6, 7, 8)
+    );
+
+Flatten it into:
+
+[1,2,3,4,5,6,7,8]
+Q15
+
+Given a list of sentences, extract all unique words.
+
+Q16
+
+Find all employees whose salary is greater than ₹100,000.
+
+Q17
+
+Convert:
+
+List<Employee>
+
+into:
+
+List<EmployeeDTO>
+
+using map().
+
+Q18
+
+Given:
+
+List<List<String>>
+
+find the total number of strings using flatMap().
+
+flatMap() is particularly important because it maps each element to a stream and then flattens the resulting streams.
+
+Part 3 — Matching, finding and limiting: Q19–Q23
+Q19
+
+Check whether any employee has salary > ₹200,000.
+
+Q20
+
+Check whether all employees have salary > ₹30,000.
+
+Q21
+
+Check whether none of the employees belong to "HR".
+
+Q22
+
+Find the first employee whose salary is greater than ₹100,000.
+
+Q23
+
+Find the first 5 employees after sorting by salary.
+
+These are useful because anyMatch, allMatch, noneMatch, findFirst, limit, and related operations are common interview tools. The Stream API supports short-circuiting operations such as these.
+
+Part 4 — reduce(): Q24–Q28
+Q24
+
+Find the sum of integers using reduce().
+
+Q25
+
+Find the maximum number using reduce().
+
+Q26
+
+Find the product of all numbers using reduce().
+
+Q27
+
+Find the longest string using reduce().
+
+Q28
+
+Explain and demonstrate:
+
+reduce()
+
+vs
+
+collect()
+
+This one is important for senior interviews. reduce() and collect() both perform reductions, but collect() is designed for mutable result accumulation through a Collector.
+
+Part 5 — Collectors: Q29–Q35
+Q29
+
+Convert a List<Employee> into a Set<String> of employee names.
+
+Q30
+
+Convert employees into:
+
+Map<Long, Employee>
+
+using employee ID as the key.
+
+Q31
+
+Convert employees into:
+
+Map<String, Employee>
+
+using employee name as the key.
+
+Q32
+
+What happens when two employees have the same key with Collectors.toMap()?
+
+Write a solution using a merge function.
+
+Q33
+
+Join employee names into:
+
+Ravi, Ram, Anil, Suresh
+
+using joining().
+
+Q34
+
+Collect employees into a TreeSet.
+
+Q35
+
+Create a summary containing:
+
+count
+sum
+min
+max
+average
+
+for employee salaries.
+
+Collectors provides reduction operations for accumulating, grouping, partitioning, joining, summarizing, and converting streams into collections/maps.
+
+Part 6 — groupingBy: Q36–Q41
+
+This section is extremely important for your interviews.
+
+Q36
+
+Group employees by department.
+
+Expected:
+
+IT     → [employees]
+HR     → [employees]
+SALES  → [employees]
+Q37
+
+Count employees in each department.
+
+IT → 10
+HR → 5
+SALES → 8
+Q38
+
+Find the highest-paid employee in each department.
+
+Q39
+
+Find the average salary in each department.
+
+Q40
+
+Find the total salary of each department.
+
+Q41
+
+Group employees by department and then by gender.
+
+For example:
+
+IT
+ ├── MALE
+ └── FEMALE
+
+groupingBy() supports downstream collectors, which is why these nested/grouped calculations are such a common interview pattern.
+
+Part 7 — partitioningBy, toMap, duplicate handling: Q42–Q45
+Q42
+
+Partition employees into:
+
+salary >= 100000
+salary < 100000
+
+using partitioningBy().
+
+Q43
+
+Find duplicate elements in a list.
+
+Q44
+
+Find the frequency of each element.
+
+Input:
+
+[A, B, A, C, B, A]
+
+Output:
+
+A → 3
+B → 2
+C → 1
+Q45
+
+Find the most frequently occurring element.
+
+partitioningBy() creates a boolean partition, while toMap() and groupingBy() are useful for frequency and key-based aggregation.
+
+Part 8 — Classic interview problems: Q46–Q50
+
+These are the ones I especially want you to practice.
+
+Q46 — Second highest salary
+
+Given:
+
+List<Employee>
+
+find the employee with the second-highest salary.
+
+Also handle duplicate salaries correctly.
+
+Q47 — Highest salary in each department
+
+Return:
+
+Map<String, Employee>
+
+where:
+
+department → highest-paid employee
+Q48 — First non-repeated character
+
+Given:
+
+"swiss"
+
+find:
+
+"w"
+
+Use Streams.
+
+This tests:
+
+chars()
+→ mapToObj()
+→ groupingBy()
+→ LinkedHashMap
+→ entrySet()
+Q49 — Employees with more than one project
+
+Given:
+
+List<Employee>
+
+where each employee has:
+
+List<String> projects
+
+find employees associated with more than one project.
+
+This combines object traversal with Stream operations.
+
+Q50 — Complex employee report
+
+Given employees with:
+
+id
+name
+department
+gender
+salary
+age
+projects
+location
+
+produce a report containing:
+
+1. Employee count by department
+2. Highest salary by department
+3. Average salary by department
+4. Male/female count by department
+5. Employees with salary > 100k
+6. Top 3 highest-paid employees
+7. Departments with average salary > 100k
+
+This is the kind of question where you need to compose several Stream concepts, rather than knowing one method in isolation.
+
+How I want you to solve them
+
+Don't approach the 50 like this:
+
+Q1 → memorize
+Q2 → memorize
+Q3 → memorize
+
+Instead, build these patterns in your head:
+
+FILTER
+map()
+filter()
+
+TRANSFORM
+map()
+flatMap()
+
+FIND
+findFirst()
+findAny()
+
+MATCH
+anyMatch()
+allMatch()
+noneMatch()
+
+REDUCE
+reduce()
+
+COLLECT
+collect()
+
+GROUP
+groupingBy()
+
+PARTITION
+partitioningBy()
+
+MAP
+toMap()
+
+SUMMARY
+summarizingInt()
+summarizingDouble()
+
+PRIMITIVE
+mapToInt()
+mapToLong()
+mapToDouble()
+
+PARALLEL
+parallelStream()
+
+Once you understand those patterns, 50 questions become variations of a smaller number of concepts.
+
+Can you finish all 50 today?
+Technically: Yes.
+Should you?
+
+For you specifically, I wouldn't.
+
+You told me earlier that when you study too much, you start feeling mentally heavy. In that situation, doing 50 problems continuously would likely turn into pattern memorization rather than mastery.
+
+Use:
+
+DAY 1
+Q1–Q20
+~2–3 hours
+
+DAY 2
+Q21–Q40
+~2–3 hours
+
+DAY 3
+Q41–Q50
+~2 hours
++ revision
+
+That gives you time to actually understand why the solution works.
+
+And don't skip the senior topics: groupingBy, downstream collectors, toMap merge functions, reduce vs collect, and parallel streams are particularly important because they expose whether you really understand Streams rather than just knowing map() and filter(). Oracle's documentation also notes that parallel streams are not automatically faster and require care around ordering, side effects, and collection strategy.
+
+My recommended target for you
+50 questions
+    ↓
+~30 easy/medium
+    ↓
+~15 advanced
+    ↓
+~5 senior/tricky
+
+Don't try to finish 50 just to say "done." A much better goal is to be able to take a new Stream problem in an interview and identify the pattern within 30–60 seconds.
+
+For your next step, start with Q1–Q10 only. Once those are comfortable, move to map/filter/flatMap, then Collectors, then groupingBy.
+
+Absolutely. This is the best way for you to learn Streams: one problem at a time, understand the thought process, solve it yourself, then compare with the solution.
+
+We'll follow the 50-question roadmap, but I won't dump all 50 solutions at once.
+
+Question 1 — Find Even Numbers
+
+Given:
+
+List<Integer> numbers = List.of(10, 15, 20, 25, 30, 35, 40);
+Requirement
+
+Using Java Streams, find all even numbers.
+
+Expected output:
+
+[10, 20, 30, 40]
+First think before coding
+
+Ask yourself:
+
+"I have a list of numbers. I only want elements that satisfy a condition."
+
+Which Stream operation should you think of?
+
+filter()
+
+filter() keeps elements that match a given condition and produces another Stream. Oracle's Stream documentation describes this as a common pipeline operation.
+
+Solution
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        List<Integer> numbers =
+                List.of(10, 15, 20, 25, 30, 35, 40);
+
+        List<Integer> evenNumbers = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .toList();
+
+        System.out.println(evenNumbers);
+    }
+}
+
+Output:
+
+[10, 20, 30, 40]
+Understand the pipeline
+
+Don't memorize the code. Understand this:
+
+numbers
+   ↓
+stream()
+   ↓
+filter(n -> n % 2 == 0)
+   ↓
+10 20 30 40
+   ↓
+toList()
+
+The important line is:
+
+.filter(n -> n % 2 == 0)
+
+For every number:
+
+10 → 10 % 2 = 0 → KEEP
+15 → 15 % 2 = 1 → REMOVE
+20 → 20 % 2 = 0 → KEEP
+25 → 25 % 2 = 1 → REMOVE
+Interview question
+
+Why don't we use map() here?
+
+Because we aren't transforming each element into another value. We're selecting/removing elements based on a condition.
+
+filter() → SELECT
+map()    → TRANSFORM
+
+This distinction is extremely important for Streams interviews.
+
+Your turn
+
+Don't look back at the solution. Write Q1 yourself:
+
+List<Integer> numbers = List.of(10, 15, 20, 25, 30, 35, 40);
+
+// write your solution
+
+Send me your code. I'll review it like an interviewer, then we'll move to Question 2.
+
+next question
+Question 2 — Find numbers greater than 20
+
+Given:
+
+List<Integer> numbers =
+        List.of(10, 15, 20, 25, 30, 35, 40);
+Requirement
+
+Using Java Streams, find all numbers greater than 20.
+
+Expected output:
+
+[25, 30, 35, 40]
+Think first
+
+Again, we're selecting elements based on a condition, so the main operation is:
+
+filter()
+
+A Stream pipeline can use filter() to keep only elements that satisfy its predicate.
+
+Solution
+List<Integer> result = numbers.stream()
+        .filter(n -> n > 20)
+        .toList();
+
+System.out.println(result);
+
+Output:
+
+[25, 30, 35, 40]
+Understand it
+10  → 10 > 20 → false → remove
+15  → 15 > 20 → false → remove
+20  → 20 > 20 → false → remove
+25  → 25 > 20 → true  → keep
+30  → 30 > 20 → true  → keep
+35  → 35 > 20 → true  → keep
+40  → 40 > 20 → true  → keep
+Interview point
+
+Notice the difference:
+
+.filter(n -> n % 2 == 0)
+
+means:
+
+Keep numbers satisfying even condition.
+
+.filter(n -> n > 20)
+
+means:
+
+Keep numbers satisfying greater-than-20 condition.
+
+So the important concept is:
+
+filter() = select elements based on a condition.
+
+Small challenge
+
+Can you modify it to find:
+
+[25, 30, 35]
+
+That means greater than 20 AND less than 40.
+
+Try it mentally first. The solution is:
+
+List<Integer> result = numbers.stream()
+        .filter(n -> n > 20 && n < 40)
+        .toList();
+
+Next question will introduce map(), so you'll start seeing the important difference between filter = select and map = transform.
+
+next problem
+Question 3 — Convert Strings to Uppercase
+
+This is our first map() problem.
+
+Given:
+
+List<String> names =
+        List.of("ravi", "ram", "anil", "suresh");
+Requirement
+
+Using Java Streams, convert every name to uppercase.
+
+Expected output:
+
+[RAVI, RAM, ANIL, SURESH]
+Think first
+
+In the previous questions, we used:
+
+filter()
+
+because we wanted to select some elements.
+
+Here, we want to change/transform each element:
+
+ravi   → RAVI
+ram    → RAM
+anil   → ANIL
+suresh → SURESH
+
+So the Stream operation is:
+
+map()
+
+map() applies a function to each element and produces a stream containing the resulting values. It is an intermediate operation.
+
+Solution
+List<String> result = names.stream()
+        .map(String::toUpperCase)
+        .toList();
+
+System.out.println(result);
+
+Output:
+
+[RAVI, RAM, ANIL, SURESH]
+
+You can also write the lambda version:
+
+List<String> result = names.stream()
+        .map(name -> name.toUpperCase())
+        .toList();
+The important difference
+
+Remember this:
+
+filter() → SELECT
+map()    → TRANSFORM
+
+For example:
+
+.filter(name -> name.length() > 4)
+
+means:
+
+Keep only some names.
+
+Whereas:
+
+.map(name -> name.toUpperCase())
+
+means:
+
+Transform every name.
+
+Interview memory trick
+FILTER = Which elements do I want?
+MAP    = What should each element become?
+Your small challenge
+
+Without looking at the solution, write a Stream that converts:
+
+List<Integer> numbers =
+        List.of(1, 2, 3, 4, 5);
+
+into:
+
+[2, 4, 6, 8, 10]
+
+using map().
+
+Then we'll go to Question 4.
