@@ -3,13 +3,10 @@ package com.kr.myjavaapp.streams;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamBasicLevel4 {
 
@@ -27,6 +24,7 @@ public class StreamBasicLevel4 {
 				new Em(3L, "Ravi", "IT", 120000), new Em(4L, "Kiran", "SALES", 70000),
 				new Em(5L, "Anil", "HR", 110000));
 
+		// Find the unique name from department
 		Map<String, Set<String>> unique = employee1.stream()
 				.collect(Collectors.groupingBy(Em::getDepartment, Collectors.mapping(Em::getName, Collectors.toSet())));
 
